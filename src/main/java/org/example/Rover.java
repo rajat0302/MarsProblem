@@ -2,8 +2,8 @@ package org.example;
 
 public interface Rover {
 
-    int roverLocation(int x, int y, char direction);
-    void roverCommand(char command[]);
-
-
+    void initialRoverLocation(int x, int y, char direction);
+    void roverCommand(char[] command);
+    void presentLocation();
+    void commandsToBeFollowed();
 }
