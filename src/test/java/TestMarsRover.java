@@ -36,4 +36,25 @@ public class TestMarsRover {
         Assertions.assertEquals("(x,y):3,1 & direction is:E",rover.presentLocation());
     }
 
+    @Test
+    public void testForWrongCommandMoveOrTurn()
+    {
+        Rover rover = new MarsRover();
+        rover.initialRoverLocation(1,1,'N');
+        char[] commands = {'s'};
+        rover.roverCommand(commands);
+        Assertions.assertEquals("(x,y):1,1 & direction is:N",rover.presentLocation());
+    }
+
+    @Test
+    public void testForSingleCommandTurn()
+    {
+        Rover rover = new MarsRover();
+        rover.initialRoverLocation(1,1,'N');
+        char[] commands = {'l'};
+        rover.roverCommand(commands);
+        Assertions.assertEquals("(x,y):1,1 & direction is:W",rover.presentLocation());
+    }
+
+
 }
