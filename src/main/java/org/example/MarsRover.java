@@ -99,7 +99,5 @@ public class MarsRover implements Rover{
     public String commandsToBeFollowed() {
         return "commands are:" + Arrays.toString(commands);
     }
-
-
-
+    
 }
