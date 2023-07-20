@@ -96,8 +96,8 @@ public class MarsRover implements Rover{
     }
 
     @Override
-    public void commandsToBeFollowed() {
-        System.out.println("commands are:" + Arrays.toString(commands));
+    public String commandsToBeFollowed() {
+        return "commands are:" + Arrays.toString(commands);
     }
 
 

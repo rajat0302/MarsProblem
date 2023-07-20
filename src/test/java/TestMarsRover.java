@@ -17,13 +17,23 @@ public class TestMarsRover {
     }
 
     @Test
-    public void testAfterCommandsLocation()
+    public void testForSingleCommandMove()
     {
         Rover rover = new MarsRover();
         rover.initialRoverLocation(1,1,'N');
         char[] commands = {'f'};
         rover.roverCommand(commands);
         Assertions.assertEquals("(x,y):1,2 & direction is:N",rover.presentLocation());
+    }
+
+    @Test
+    public void testForMultipleCommandsMove()
+    {
+        Rover rover = new MarsRover();
+        rover.initialRoverLocation(1,1,'E');
+        char[] commands = {'f','b','f','f'};
+        rover.roverCommand(commands);
+        Assertions.assertEquals("(x,y):3,1 & direction is:E",rover.presentLocation());
     }
 
 }
