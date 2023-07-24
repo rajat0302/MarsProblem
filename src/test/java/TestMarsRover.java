@@ -88,4 +88,23 @@ public class TestMarsRover {
         Assertions.assertEquals("(x,y):3,5 & direction is:S",rover.presentLocation());
     }
 
+
+    @Test
+    public void testForWrappingUpTheCoordinatesLessthanZero()
+    {
+        Rover rover = new MarsRover();
+        rover.initialRoverLocation(1,1,'S');
+        char[] commands = {'f','f'};
+        rover.roverCommand(commands);
+        Assertions.assertEquals("(x,y):1,9 & direction is:S",rover.presentLocation());
+    }
+    @Test
+    public void testForWrappingUpTheCoordinatesMoreThanTen()
+    {
+        Rover rover = new MarsRover();
+        rover.initialRoverLocation(9,1,'E');
+        char[] commands = {'f'};
+        rover.roverCommand(commands);
+        Assertions.assertEquals("(x,y):0,1 & direction is:E",rover.presentLocation());
+    }
 }

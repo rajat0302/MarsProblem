@@ -57,14 +57,16 @@ public class MarsRover implements Rover{
                 newX += (command == 'f') ? -1 : 1;
                 break;
         }
-            if (!hasObstacle(newX, newY)) {
+        newX = wrappingAtEdges(newX, 'x');
+        newY = wrappingAtEdges(newY, 'y');
+
+        if (!hasObstacle(newX, newY)) {
                 x = newX;
                 y = newY;
-            } else {
+        } else {
                 System.out.println("Obstacle detected at (" + newX + ", " + newY + "). this moving is aborted. Back to the last move " + x + ", " + y);
-            }
+        }
     }
-
     private void turnRover(char command)
     {
       switch (command){
@@ -122,5 +124,25 @@ public class MarsRover implements Rover{
         }
         return false;
     }
+
+    private int wrappingAtEdges(int coordinate, char axis)
+    {
+        int size = 10;            //let it be of max 10,10
+
+        if (coordinate < 0)       //case for negative axis
+        {
+            coordinate += size;
+        }
+        else if (axis == 'x' && coordinate >= size)
+        {
+            coordinate %= size;
+        }
+        else if (axis == 'y' && coordinate >= size)
+        {
+            coordinate %= size;
+        }
+        return coordinate;
+    }
+
 
 }
