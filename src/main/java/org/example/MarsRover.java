@@ -5,6 +5,8 @@ import java.util.Arrays;
 public class MarsRover implements Rover{
    private int x;
    private int y;
+
+   private int obstacles[]={0};
    private char direction;
    private char[] commands;
     @Override
@@ -12,6 +14,12 @@ public class MarsRover implements Rover{
         this.x = x;
         this.y= y;
         this.direction = direction;
+    }
+
+    @Override
+    public void setObstacles(int[] location)
+    {
+            obstacles= Arrays.copyOfRange(location,0,location.length);
     }
 
     @Override
@@ -49,9 +57,14 @@ public class MarsRover implements Rover{
                 newX += (command == 'f') ? -1 : 1;
                 break;
         }
-        x = newX;
-        y = newY;
+            if (!hasObstacle(newX, newY)) {
+                x = newX;
+                y = newY;
+            } else {
+                System.out.println("Obstacle detected at (" + newX + ", " + newY + "). this moving is aborted. Back to the last move " + x + ", " + y);
+            }
     }
+
     private void turnRover(char command)
     {
       switch (command){
@@ -99,5 +112,15 @@ public class MarsRover implements Rover{
     public String commandsToBeFollowed() {
         return "commands are:" + Arrays.toString(commands);
     }
-    
+    private boolean hasObstacle(int newX, int newY) {
+        if(obstacles.length != 1) {
+            for (int i = 0; i < obstacles.length; i++) {
+                if (newX == obstacles[i] && newY == obstacles[++i]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }

@@ -76,5 +76,16 @@ public class TestMarsRover {
         Assertions.assertEquals("(x,y):3,2 & direction is:W",rover.presentLocation());
     }
 
+    @Test
+    public void testForObstacle()
+    {
+        Rover rover = new MarsRover();
+        rover.initialRoverLocation(4,4,'S');
+        int obstacles[] = {5,5,7,7,9,9};
+        rover.setObstacles(obstacles);
+        char[] commands = {'b','l','f','b','r'};
+        rover.roverCommand(commands);
+        Assertions.assertEquals("(x,y):3,5 & direction is:S",rover.presentLocation());
+    }
 
 }

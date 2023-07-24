@@ -6,4 +6,5 @@ public interface Rover {
     void roverCommand(char[] command);
     String presentLocation();
     String commandsToBeFollowed();
+    void setObstacles(int [] obstacle);
 }
