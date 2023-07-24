@@ -107,4 +107,29 @@ public class TestMarsRover {
         rover.roverCommand(commands);
         Assertions.assertEquals("(x,y):0,1 & direction is:E",rover.presentLocation());
     }
+
+    @Test
+    public void testForWrappingUpWithObstacles()
+    {
+        Rover rover = new MarsRover();
+        rover.initialRoverLocation(8,8,'E');
+        int obstacles[] = {9,9};
+        rover.setObstacles(obstacles);
+        char[] commands = {'f','r','b','l','f'};
+        rover.roverCommand(commands);
+        Assertions.assertEquals("(x,y):0,8 & direction is:E",rover.presentLocation());
+    }
+
+    @Test
+    public void testForInitialAtEdge()
+    {
+        Rover rover = new MarsRover();
+        rover.initialRoverLocation(10,10,'E');
+        int obstacles[] = {1,1};
+        rover.setObstacles(obstacles);
+        char[] commands = {'f','r','b'};
+        rover.roverCommand(commands);
+        Assertions.assertEquals("(x,y):1,0 & direction is:S",rover.presentLocation());
+    }
+
 }
