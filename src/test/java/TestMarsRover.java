@@ -2,6 +2,7 @@ import org.example.MarsRover;
 import org.example.Rover;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class TestMarsRover {
 
@@ -11,9 +12,11 @@ public class TestMarsRover {
         Rover rover = new MarsRover();
         rover.initialRoverLocation(1,1,'N');
         char[] commands = {'f','f','l','f','r'};
+        assertDoesNotThrow(() -> {
         rover.roverCommand(commands);
         rover.presentLocation();
         rover.commandsToBeFollowed();
+        });
     }
 
     @Test
